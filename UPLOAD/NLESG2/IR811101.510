@@ -1,0 +1,2653 @@
+Created by bin2egnos CAPGEMINI 2
+81 
+E2K223  -000-011-0001           
+20160325 15350 
+tempNlesG2File.cnf                                                                                                              
+f5cfddd9
+45969     
+
+! IR81 SWRU file for NLES G2 Redu2 (RD2) / 510
+
+! Header fields:
+!----------------
+! Generator ID (32 byte)
+! File SWRU ID (3 byte)
+! Configuration Tracking information (32 byte)
+! Date/Time of Generation (15 byte)
+! Original File Name (128 byte)
+! CRC of entire File (8 byte)
+! Length of file body (10 byte)
+!
+! Body fields
+!----------------
+! Parameter ID
+! Parameter Description
+! Data Type
+! Unit
+! LSB
+! Range
+! (Effective value)
+! Precision
+! Parameter Name = Coded Value
+!
+! OPS_PAR_001 GEO_PRN
+! The PRN code of the GEO satellite used by this NLES. 
+! The PRN value is not only needed by the main NLES (IB,
+! LLSG, RX) but also by the backup NLES to bring the LL into
+! passive acquisition. See definition of SV PRN data type
+! UINT8
+! N/A
+! 1
+! 0 .. 211
+! N/A
+GEO_PRN = 132
+
+
+! OPS_PAR_002 GEO_SATELLITE
+! GEO satellite The GEO satellite that will receive the signal emitted by
+! the NLES. This parameter is used to determine which RF
+! adapter is in interface with the CC.
+! UINT8
+! N/A
+! 1
+! 0 : Inmarsat 3 
+! 1 : Inmarsat 4
+! 2:  Astra4B
+! 3:  Astra5B
+! N/A
+GEO_SATELLITE = 3
+
+
+! OPS_PAR_003 MAIN_BACKUP_STATUS
+! Defines the NLES as the Main NLES or as the Backup NLES
+! UINT8 
+! N/A 
+! N/A 
+! 0 : backup
+! 1 : main
+! This value is hot configurable
+! N/A
+MAIN_BACKUP_STATUS = 1
+
+
+! OPS_PAR_004 FIRST_COMMON_VIEW
+! The First Common View parameter indicates to the Core 
+! Computer that a special procedure has to be applied to
+! transit to "Operational Active / Signal Acquisition" mode.
+! UINT8
+! N/A
+! N/A
+! (0/1) = special procedure shall (not be/be) applied
+! N/A
+FIRST_COMMON_VIEW = 1
+
+
+! OPS_PAR_005 DUMMY_MESSAGES
+! Number of Dummy (GEO) Messages (Type 63) to be generated 
+! and sent by CC to the LLSG in case no CPF message can be selected.
+! UINT8
+! N/A
+! 1
+! 0..3
+!  
+DUMMY_MESSAGES = 3
+
+
+! OPS_PAR_006 NUM_CPF
+! Number of CPFs in the system
+! UINT8
+! N/A
+! 1
+! 1..10
+! 
+NUM_CPF = 5
+
+
+! OPS_PAR_007 CONTROL_CN0_L1_TH
+! Control threshold for L1 signals C/N0 measured by the receiver
+! INT8
+! dBHz
+! 1
+! 0..127
+! 
+CONTROL_CN0_L1_TH = 50
+
+
+! OPS_PAR_008 CCF_COMFIRM_TIMEOUT
+! Value of timeout used by NLES to expect manual confirmation
+! of some operational commands from CCF
+! UINT16
+! minutes
+! 1
+! 0 .. 900
+! 1
+CCF_COMFIRM_TIMEOUT = 5
+
+
+! OPS_PAR_009 EVENT_CONFIGURATION
+! This value defines which of the NLES events shall be
+! disabled. Each Bit position stands for one of the 256
+! possible event codes..
+! bit string 8*32
+! N/A
+! N/A
+! Bit n  = (0/1): Event with Event Code n is
+! (enabled/disabled). n = 0..255
+! N/A
+EVENT_CONFIGURATION = 0000000000000000000000000000000000000000000000000000000000000000
+
+
+! OPS_PAR_010 CONTROL_CN0_L5_TH
+! Control threshold for L5 signals C/N0 measured by the receiver
+! INT8
+! dBHz
+! 1
+! 0..127
+! 
+CONTROL_CN0_L5_TH = 50
+
+
+! OPS_PAR_011 INSTALLED_SWRU_TO_DEFAULT_TIME
+! Time from INITIALISE mode before replacing the SWRU 
+! default version by the running installed version. 
+! UINT16
+! minutes
+! 1
+! 1..1440
+! N/A
+INSTALLED_SWRU_TO_DEFAULT_TIME = 5
+
+
+! OPS_PAR_012 QOS_MAX_DIFFERENCE
+! The maximum difference among the QoS of the CPF Processing
+! Set and the two CPF Check Sets
+! UINT8
+! %
+! 1
+! 0..99
+! N/A
+QOS_MAX_DIFFERENCE = 95
+
+
+! OPS_PAR_013 SWITCH_THRESHOLD
+! Maximum accumulated delta QoS of not selected CPF w.r.t the
+! selected CPF QoS, until which CPF switch is not allowed
+! UINT16
+! meter
+! 1
+! 0..50000
+! N/A
+SWITCH_THRESHOLD = 1000
+
+
+! OPS_PAR_014 HYSTERESIS
+! Minimum deviation of the QoS of not selected CPF w.r.t the 
+! selected CPF QoS so as to be taken into account into
+! accumulated delta QoS
+! UINT16
+! meter
+! 0.01
+! 0..5
+! N/A
+HYSTERESIS = 5
+
+
+! OPS_PAR_015 INTERFACE_VERSION
+! During EGNOS interface version upgrade between version number X to version 
+! number Y, when CC implements 2 versions of interfaces in EGNOS message header, 
+! this parameter is used to specify the CC output version: If “old “ is 
+! specified, CC will generate EGNOS headers with X version; If  “new “ is 
+! specified, CC will generate EGNOS headers with Y version; otherwise, CC will 
+! generate EGNOS.
+! UINT8
+! N/A
+! N/A
+! 0 for old (default), 1 for new version
+! N/A
+INTERFACE_VERSION = 1
+
+
+! OPS_PAR_016 IB_ACQUISITION_TIMEOUT
+! Timeout transmitted to the Integrity Box while
+! commanding it to OPERATIONAL mode. The
+! parameter is used as follows by the Integrity Box : when
+! no valid message is received from the Receiver and the
+! timer reaches the timeout value, the Integrity Box goes
+! into RESET mode.
+! UINT8
+! minutes
+! N/A
+! 15..45
+! N/A
+IB_ACQUISITION_TIMEOUT = 30
+
+
+! OPS_PAR_017 TRACE_LEVEL
+! Level of generated traces
+! UINT8
+! N/A
+! N/A
+! 0..255
+! N/A
+TRACE_LEVEL = 255
+
+
+! OPS_PAR_018 TRACE_MASK
+! Selection of Core computer functions to be traced.
+! UINT32
+! N/A
+! N/A
+! Each bit is associated to an instrumented Core Computer function.
+! N/A 
+TRACE_MASK = 4294967295
+
+
+! OPS_PAR_019 TRACE_DESTINATION
+! Destination of traces (local storage in Core Computer and/or Monitoring
+! PC connected to LME port. Values: 0:local only 1:distant only 2: both destinations)
+! UINT8
+! N/A
+! N/A
+! 0,1,2
+! N/A
+TRACE_DESTINATION = 2
+
+
+! OPS_PAR_240 CR_LOGS_AS_TRACES
+! List of output LOG messages selected from receiver section 1.
+! BITSTRING(32)
+! N/A
+!
+!
+! 
+CR_LOGS_AS_TRACES = 215552
+
+
+! OPS_PAR_241 LLRX2_LOGS_AS_TRACES
+! List of output LOG messages selected from receiver section 2.
+! BITSTRING(32)
+! N/A
+!
+!
+!  
+LLRX2_LOGS_AS_TRACES = 82560
+
+
+! OPS_PAR_242 LLRX3_LOGS_AS_TRACES
+! List of output LOG messages selected from receiver section 3.
+! BITSTRING(32)
+! N/A
+!
+!
+!  
+LLRX3_LOGS_AS_TRACES = 86656
+
+! OPS_PAR_020 CABLE_MEANDELAY_J4B_J08
+! RF signal propagation delay time, induced by cables.
+! UINT32
+! ns
+! 0.01
+!
+! N/A
+CABLE_MEANDELAY_J4B_J08 = 890
+
+
+! OPS_PAR_021 CABLE_MEANDELAY_J4B_J12
+! RF signal propagation delay time, induced by cables.
+! UINT32
+! ns
+! 0.01
+!
+! N/A
+CABLE_MEANDELAY_J4B_J12 = 840
+
+
+! OPS_PAR_022 CABLE_MEANDELAY_J4B_J10
+! RF signal propagation delay time, induced by cables.
+! UINT32
+! ns
+! 0.01
+!
+! N/A
+CABLE_MEANDELAY_J4B_J10 = 800
+
+
+! OPS_PAR_023 CABLE_MEANDELAY_I12_J10A
+! RF signal propagation delay time, induced by cables.
+! UINT32
+! ns
+! 0.01
+!
+! N/A
+CABLE_MEANDELAY_I12_J10A = 1148
+
+
+! OPS_PAR_024 CABLE_MEANDELAY_J10A_J10B
+! RF signal propagation delay time, induced by cables.
+! UINT32
+! ns
+! 0.01
+!
+! N/A
+CABLE_MEANDELAY_J10A_J10B = 1003
+
+
+! OPS_PAR_025 CABLE_MEANDELAY_J10B_I14
+! RF signal propagation delay time, induced by cables.
+! UINT32
+! ns
+! 0.01
+!
+! N/A
+CABLE_MEANDELAY_J10B_I14 = 1660
+
+
+! OPS_PAR_026 CABLE_MEANDELAY_J10B_J10
+! RF signal propagation delay time, induced by cables.
+! UINT32
+! ns
+! 0.01
+!
+! N/A
+CABLE_MEANDELAY_J10B_J10 = 590
+
+
+! OPS_PAR_027 CABLE_MEANDELAY_I13_J12
+! RF signal propagation delay time, induced by cables.
+! UINT32
+! ns
+! 0.01
+!
+! N/A
+CABLE_MEANDELAY_I13_J12 = 1363
+
+
+! OPS_PAR_028 CABLE_MEANDELAY_J5_J08
+! RF signal propagation delay time, induced by cables.
+! UINT32
+! ns
+! 0.01
+!
+! N/A
+CABLE_MEANDELAY_J5_J08 = 770
+
+
+! OPS_PAR_030 CABLE_MEANDELAY_J14B_J13
+! RF signal propagation delay time, induced by cables.
+! UINT32
+! ns
+! 0.01
+!
+! N/A
+CABLE_MEANDELAY_J14B_J13 = 950
+
+
+! OPS_PAR_031 CABLE_MEANDELAY_J14B_J11
+! RF signal propagation delay time, induced by cables.
+! UINT32
+! ns
+! 0.01
+!
+! N/A
+CABLE_MEANDELAY_J14B_J11 = 900
+
+
+! OPS_PAR_032 CABLE_MEANDELAY_I12_J11A
+! RF signal propagation delay time, induced by cables.
+! UINT32
+! ns
+! 0.01
+!
+! N/A
+CABLE_MEANDELAY_I12_J11A = 1133
+
+
+! OPS_PAR_033 CABLE_MEANDELAY_J11A_J11B
+! RF signal propagation delay time, induced by cables.
+! UINT32
+! ns
+! 0.01
+!
+! N/A
+CABLE_MEANDELAY_J11A_J11B = 986
+
+
+! OPS_PAR_034 CABLE_MEANDELAY_J11B_I16
+! RF signal propagation delay time, induced by cables.
+! UINT32
+! ns
+! 0.01
+!
+! N/A
+CABLE_MEANDELAY_J11B_I16 = 1625
+
+
+! OPS_PAR_035 CABLE_MEANDELAY_J11B_J11
+! RF signal propagation delay time, induced by cables.
+! UINT32
+! ns
+! 0.01
+!
+! N/A
+CABLE_MEANDELAY_J11B_J11 = 790
+
+
+! OPS_PAR_036 CABLE_MEANDELAY_I15_J13
+! RF signal propagation delay time, induced by cables.
+! UINT32
+! ns
+! 0.01
+!
+! N/A
+CABLE_MEANDELAY_I15_J13 = 1647
+
+
+! OPS_PAR_037 CABLE_MEANDELAY_J08_N2
+! RF signal propagation delay time, induced by cables.
+! UINT32
+! ns
+! 0.01
+!
+! N/A
+CABLE_MEANDELAY_J08_N2 = 346
+
+
+! OPS_PAR_038 CABLE_MEANDELAY_J11_N3
+! RF signal propagation delay time, induced by cables.
+! UINT32
+! ns
+! 0.01
+!
+! N/A
+CABLE_MEANDELAY_J11_N3 = 326
+
+
+! OPS_PAR_039 CABLE_MEANDELAY_J10_N4
+! RF signal propagation delay time, induced by cables.
+! UINT32
+! ns
+! 0.01
+!
+! N/A
+CABLE_MEANDELAY_J10_N4 = 347
+
+
+! OPS_PAR_040 CABLE_MEANDELAY_J13_N5
+! RF signal propagation delay time, induced by cables.
+! UINT32
+! ns
+! 0.01
+!
+! N/A
+CABLE_MEANDELAY_J13_N5 = 316
+
+
+! OPS_PAR_041 CABLE_MEANDELAY_J12_N6
+! RF signal propagation delay time, induced by cables.
+! UINT32
+! ns
+! 0.01
+!
+! N/A
+CABLE_MEANDELAY_J12_N6 = 344
+
+
+! OPS_PAR_042 CABLE_MEANDELAY_A0_J5
+! RF signal propagation delay time, induced by cables.
+! UINT32
+! ns
+! 0.01
+!
+! N/A
+CABLE_MEANDELAY_A0_J5 = 14000
+
+
+! OPS_PAR_043 CABLE_MEANDELAY_B_I15
+! RF signal propagation delay time, induced by cables.
+! UINT32
+! ns
+! 0.01
+!
+! N/A
+CABLE_MEANDELAY_B_I15 = 2069
+
+
+! OPS_PAR_044 CABLE_MEANDELAY_B_I13
+! RF signal propagation delay time, induced by cables.
+! UINT32
+! ns
+! 0.01
+!
+! N/A
+CABLE_MEANDELAY_B_I13 = 2093
+
+
+! OPS_PAR_045 CABLE_MEANDELAY_A_I12_C1
+! RF signal propagation delay time, induced by cables.
+! UINT32
+! ns
+! 0.01
+!
+! N/A
+CABLE_MEANDELAY_A_I12_C1 = 2304
+
+
+! OPS_PAR_046 CABLE_MEANDELAY_A_I12_C5
+! RF signal propagation delay time, induced by cables.
+! UINT32
+! ns
+! 0.01
+!
+! N/A
+CABLE_MEANDELAY_A_I12_C5 = 2316
+
+
+! OPS_PAR_047 CABLE_MEANDELAY_I14_B
+! RF signal propagation delay time, induced by cables.
+! UINT32
+! ns
+! 0.01
+!
+! N/A
+CABLE_MEANDELAY_I14_B = 2268
+
+
+! OPS_PAR_048 CABLE_MEANDELAY_I16_B
+! RF signal propagation delay time, induced by cables.
+! UINT32
+! ns
+! 0.01
+!
+! N/A
+CABLE_MEANDELAY_I16_B = 2256
+
+
+! OPS_PAR_244 CABLE_MEANDELAY_N0_J4A
+! RF signal propagation delay time, induced by cables.
+! UINT32
+! ns
+! 0.01
+!
+! N/A
+CABLE_MEANDELAY_N0_J4A = 965
+
+
+! OPS_PAR_245 CABLE_MEANDELAY_J4A_J4B
+! RF signal propagation delay time, induced by cables.
+! UINT32
+! ns
+! 0.01
+!
+! N/A
+CABLE_MEANDELAY_J4A_J4B = 5580
+
+
+! OPS_PAR_246 CABLE_MEANDELAY_J4B_J4C
+! RF signal propagation delay time, induced by cables.
+! UINT32
+! ns
+! 0.01
+!
+! N/A
+CABLE_MEANDELAY_J4B_J4C = 580
+
+
+! OPS_PAR_247 CABLE_MEANDELAY_J4C_J4D
+! RF signal propagation delay time, induced by cables.
+! UINT32
+! ns
+! 0.01
+!
+! N/A
+CABLE_MEANDELAY_J4C_J4D = 1559
+
+
+! OPS_PAR_248 CABLE_MEANDELAY_J4D_I11_C1
+! RF signal propagation delay time, induced by cables.
+! UINT32
+! ns
+! 0.01
+!
+! N/A
+CABLE_MEANDELAY_J4D_I11_C1 = 1501
+
+
+! OPS_PAR_249 CABLE_MEANDELAY_I11_A_C1
+! RF signal propagation delay time, induced by cables.
+! UINT32
+! ns
+! 0.01
+!
+! N/A
+CABLE_MEANDELAY_I11_A_C1 = 2152
+
+
+! OPS_PAR_250 CABLE_MEANDELAY_N1_J14A
+! RF signal propagation delay time, induced by cables.
+! UINT32
+! ns
+! 0.01
+!
+! N/A
+CABLE_MEANDELAY_N1_J14A = 949
+
+
+! OPS_PAR_251 CABLE_MEANDELAY_J14A_J14B
+! RF signal propagation delay time, induced by cables.
+! UINT32
+! ns
+! 0.01
+!
+! N/A
+CABLE_MEANDELAY_J14A_J14B = 5662
+
+
+! OPS_PAR_252 CABLE_MEANDELAY_J14B_J14C
+! RF signal propagation delay time, induced by cables.
+! UINT32
+! ns
+! 0.01
+!
+! N/A
+CABLE_MEANDELAY_J14B_J14C = 590
+
+
+! OPS_PAR_253 CABLE_MEANDELAY_J14C_J14D
+! RF signal propagation delay time, induced by cables.
+! UINT32
+! ns
+! 0.01
+!
+! N/A
+CABLE_MEANDELAY_J14C_J14D = 1555
+
+
+! OPS_PAR_254 CABLE_MEANDELAY_J14D_I11_C5
+! RF signal propagation delay time, induced by cables.
+! UINT32
+! ns
+! 0.01
+!
+! N/A
+CABLE_MEANDELAY_J14D_I11_C5 = 1517
+
+
+! OPS_PAR_255 CABLE_MEANDELAY_I11_A_C5
+! RF signal propagation delay time, induced by cables.
+! UINT32
+! ns
+! 0.01
+!
+! N/A
+CABLE_MEANDELAY_I11_A_C5 = 2154
+
+
+! OPS_PAR_049 RFA_LOCAL_FREQ_OFFSET
+! Frequency offset due to local frequency instability at L1 frequency.
+! UINT16
+! Hz
+! 1
+! 0 to 10000
+! 1
+RFA_LOCAL_FREQ_OFFSET = 0
+
+
+! OPS_PAR_050 RFA_IF_L1_FREQ_OFFSET
+! Output frequency offset of the converter.
+! INT64
+! Hz
+! 1E-10
+! 
+! 1
+RFA_IF_L1_FREQ_OFFSET = 15335083008
+
+
+! OPS_PAR_051 RFA_IF_L5_FREQ_OFFSET
+! Output frequency offset of the converter.
+! INT64
+! Hz
+! 1E-10
+! 
+! 1
+RFA_IF_L5_FREQ_OFFSET = -15945434570
+
+
+! OPS_PAR_052 RFA_L1_C1_FREQ_OFFSET
+! Output frequency offset of the converter.
+! INT64
+! Hz
+! 1E-10
+! 
+! 1
+RFA_L1_C1_FREQ_OFFSET = 14038085975
+
+
+! OPS_PAR_053 RFA_L5_C5_FREQ_OFFSET
+! Output frequency offset of the converter.
+! INT64
+! Hz
+! 1E-10
+! 
+! 1
+RFA_L5_C5_FREQ_OFFSET = 14038085938
+
+
+! OPS_PAR_054 RFA_C1C2_L1L2_FREQ_OFFSET
+! Output frequency offset of the converter.
+! INT64
+! Hz
+! 1E-10
+! 
+! 1
+RFA_C1C2_L1L2_FREQ_OFFSET = 14038085975
+
+
+! OPS_PAR_055 RFA_C5_L5_FREQ_OFFSET
+! Output frequency offset of the converter.
+! INT64
+! Hz
+! 1E-10
+! 
+! 1
+RFA_C5_L5_FREQ_OFFSET = 14038085991
+
+
+! OPS_PAR_056 PAYLOAD_DELAY_ID_PLL1
+! Mean delay encountered within L1 GEO satellite payload.
+! UINT32
+! ns
+! 0.01
+! 
+! N/A
+PAYLOAD_DELAY_ID_PLL1 = 10
+
+
+! OPS_PAR_057 PAYLOAD_DELAY_ID_PLL5
+! Mean delay encountered within L1 GEO satellite payload.
+! UINT32
+! ns
+! 0.01
+! 
+! N/A
+PAYLOAD_DELAY_ID_PLL5 = 10
+
+
+! OPS_PAR_058 LL_PASSIVE_PRHWUP_L1
+! Mean L1 hardware uplink delay of PASSIVE NLES 
+! UINT16
+! m
+! 1
+! 
+! N/A
+LL_PASSIVE_PRHWUP_L1 = 1900
+
+
+! OPS_PAR_059 LL_PASSIVE_PRHWUP_L5
+! Mean L5 hardware uplink delay of PASSIVE NLES 
+! UINT16
+! m
+! 1
+! 
+! N/A
+LL_PASSIVE_PRHWUP_L5 = 1900
+
+
+! OPS_PAR_060 LL_CTRLTH_RRC_L1
+! L1 Range rate control threshold (fine mode)
+! UINT16
+! m/s
+! 0.01
+! 
+! N/A
+LL_CTRLTH_RRC_L1 = 100
+
+
+! OPS_PAR_061 LL_CTRLTH_RRC_L5
+! L5 Range rate control threshold (fine mode)
+! UINT16
+! m/s
+! 0.01
+! 
+! N/A
+LL_CTRLTH_RRC_L5 = 50
+
+
+! OPS_PAR_062 LL_CTRLTH_PRC_L1
+! L1 phase rate control threshold (fine mode)
+! UINT16
+! m/s
+! 0.01
+! 
+! N/A
+LL_CTRLTH_PRC_L1 = 25
+
+
+! OPS_PAR_063 LL_CTRLTH_PRC_L5
+! L5 phase rate control threshold (fine mode)
+! UINT16
+! m/s
+! 0.01
+! 
+! N/A
+LL_CTRLTH_PRC_L5 = 12
+
+
+! OPS_PAR_064 LL_UPDATECTRLTH_RRC_L1
+! L1 Range rate control threshold (coarse mode)
+! UINT16
+! m/s
+! 0.01
+! 
+! N/A
+LL_UPDATECTRLTH_RRC_L1 = 100
+
+
+! OPS_PAR_065 LL_UPDATECTRLTH_RRC_L5
+! L5 Range rate control threshold (coarse mode)
+! UINT16
+! m/s
+! 0.01
+! 
+! N/A
+LL_UPDATECTRLTH_RRC_L5 = 25
+
+
+! OPS_PAR_066 LL_UPDATECTRLTH_PRC_L1
+! L1 phase rate control threshold (coarse mode)
+! UINT16
+! m/s
+! 0.01
+! 
+! N/A
+LL_UPDATECTRLTH_PRC_L1 = 25
+
+
+! OPS_PAR_067 LL_UPDATECTRLTH_PRC_L5
+! L5 phase rate control threshold (coarse mode)
+! UINT16
+! m/s
+! 0.01
+! 
+! N/A
+LL_UPDATECTRLTH_PRC_L5 = 5
+
+
+! OPS_PAR_068 LL_SO_DRIFT0
+! Initial local oscillator drift
+! INT16
+! m/s
+! 0.001
+! 
+! N/A
+LL_SO_DRIFT0 = 200
+
+
+! OPS_PAR_069 GUST_DELAY_L5_SEC_3
+! Mean delay on the received signal due to GUST Receiver hardware for L2.
+! UINT32
+! ns
+! 0.01
+! 
+! N/A
+!GUST_DELAY_L5_SEC_3 = 0
+
+
+! OPS_PAR_070 GUST_DELAY_DRIFT_L1_SEC_1
+! Delay drift due to the GUST Receiver code NCO resolution for L1.
+! UINT16
+! ns/s
+! 0.001
+! 
+! N/A
+!GUST_DELAY_DRIFT_L1_SEC_1 = 0
+
+
+! OPS_PAR_071 GUST_DELAY_DRIFT_L1_SEC_2
+! Delay drift due to the GUST Receiver code NCO resolution for L1.
+! UINT16
+! ns/s
+! 0.001
+! 
+! N/A
+!GUST_DELAY_DRIFT_L1_SEC_2 = 0
+
+
+! OPS_PAR_072 GUST_DELAY_DRIFT_L1_SEC_3
+! Delay drift due to the GUST Receiver code NCO resolution for L1.
+! UINT16
+! ns/s
+! 0.001
+! 
+! N/A
+!GUST_DELAY_DRIFT_L1_SEC_3 = 0
+
+
+! OPS_PAR_073 GUST_DELAY_DRIFT_L2_SEC_1
+! Delay drift due to the GUST Receiver code NCO resolution for L2.
+! UINT16
+! ns/s
+! 0.001
+! 
+! N/A
+!GUST_DELAY_DRIFT_L2_SEC_1 = 0
+
+
+! OPS_PAR_074 GUST_DELAY_DRIFT_L5_SEC_2
+! Delay drift due to the GUST Receiver code NCO resolution for L2.
+! UINT16
+! ns/s
+! 0.001
+! 
+! N/A
+!GUST_DELAY_DRIFT_L5_SEC_2 = 0
+
+
+! OPS_PAR_075 GUST_DELAY_DRIFT_L5_SEC_3
+! Delay drift due to the GUST Receiver code NCO resolution for L2.
+! UINT16
+! ns/s
+! 0.001
+! 
+! N/A
+!GUST_DELAY_DRIFT_L5_SEC_3 = 0
+
+
+! OPS_PAR_076 GUST_PHASE_DRIFT_L1_SEC_1
+! Phase drift due to the GUST Receiver code NCO resolution for L1.
+! UINT16
+! ns/s
+! 0.001
+! 
+! N/A
+!GUST_PHASE_DRIFT_L1_SEC_1 = 0
+
+
+! OPS_PAR_077 GUST_PHASE_DRIFT_L1_SEC_2
+! Phase drift due to the GUST Receiver code NCO resolution for L1.
+! UINT16
+! ns/s
+! 0.001
+! 
+! N/A
+!GUST_PHASE_DRIFT_L1_SEC_2 = 0
+
+
+! OPS_PAR_078 GUST_PHASE_DRIFT_L1_SEC_3
+! Phase drift due to the GUST Receiver code NCO resolution for L1.
+! UINT16
+! ns/s
+! 0.001
+! 
+! N/A
+!GUST_PHASE_DRIFT_L1_SEC_3 = 0
+
+
+! OPS_PAR_079 GUST_PHASE_DRIFT_L2_SEC_1
+! Phase drift due to the GUST Receiver code NCO resolution for L2.
+! UINT16
+! ns/s
+! 0.001
+! 
+! N/A
+!GUST_PHASE_DRIFT_L2_SEC_1 = 0
+
+
+! OPS_PAR_080 GUST_PHASE_DRIFT_L5_SEC_2
+! Phase drift due to the GUST Receiver code NCO resolution for L2.
+! UINT16
+! ns/s
+! 0.001
+! 
+! N/A
+!GUST_PHASE_DRIFT_L5_SEC_2 = 0
+
+
+! OPS_PAR_081 GUST_PHASE_DRIFT_L5_SEC_3
+! Phase drift due to the GUST Receiver code NCO resolution for L2.
+! UINT16
+! ns/s
+! 0.001
+! 
+! N/A
+!GUST_PHASE_DRIFT_L5_SEC_3 = 0
+
+! OPS_PAR_256 PAYLOAD_FREQ_OFFSET_ID_PLL1
+! Frequency offset encountered within C1/L1 GEO satellite transponder
+! INT64
+! Hz
+! 1E-10
+! 
+! 1
+PAYLOAD_FREQ_OFFSET_ID_PLL1 = 0
+
+
+! OPS_PAR_257 PAYLOAD_FREQ_OFFSET_ID_PLL5
+! Frequency offset encountered within C5/L5 GEO satellite transponder
+! INT64
+! Hz
+! 1E-10
+! 
+! 1
+PAYLOAD_FREQ_OFFSET_ID_PLL5 = 0
+
+
+! OPS_PAR_082 ANT_DELAY_RFST_RX_L1
+! Delay due to ground station reception antenna for L1.
+! UINT32
+! ns
+! 0.01
+! 
+! N/A
+ANT_DELAY_RFST_RX_L1 = 1566
+
+
+! OPS_PAR_083 ANT_DELAY_RFST_RX_L5
+! Delay due to ground station reception antenna for L5.
+! UINT32
+! ns
+! 0.01
+! 
+! N/A
+ANT_DELAY_RFST_RX_L5 = 1560
+
+
+! OPS_PAR_084 ANT_DELAY_RFST_TX_L1
+! Delay due to ground station transmission antenna for L1.
+! UINT32
+! ns
+! 0.01
+! 
+! N/A
+ANT_DELAY_RFST_TX_L1 = 1625
+
+
+! OPS_PAR_085 ANT_DELAY_RFST_TX_L5
+! Delay due to ground station transmission antenna for L5.
+! UINT32
+! ns
+! 0.01
+! 
+! N/A
+ANT_DELAY_RFST_TX_L5 = 1603
+
+
+! OPS_PAR_086 ANT_DELAY_CR_L1
+! Delay due to Core Receiver antenna for L1.
+! UINT32
+! ns
+! 0.01
+! 
+! N/A
+ANT_DELAY_CR_L1 = 1580
+
+
+! OPS_PAR_087 LL_Q_SATRANGE_STD
+! Satrange acceleration standard deviation.
+! UINT32
+! m/s2
+! 1E-7
+! 
+! 
+LL_Q_SATRANGE_STD = 262
+
+
+! OPS_PAR_088 LL_Q_IONO_STD
+! Ionosphere acceleration standard deviation.
+! UINT32
+! m/s2
+! 1E-4
+! 
+! 
+LL_Q_IONO_STD = 971
+
+
+! OPS_PAR_089 LL_Q_PHASE_STD
+! Phase rate standard deviation.
+! UINT32
+! m/s
+! 1E-4
+! 
+! 
+LL_Q_PHASE_STD = 10
+
+
+! OPS_PAR_090 LL_Q_BIAS_STD
+! L1-L5 bias standard deviation.
+! UINT32
+! m
+! 1E-7
+! 
+!
+LL_Q_BIAS_STD = 1000
+
+
+! OPS_PAR_091 LL_SGREINIT_PREDTIME
+! Time allocated for SG reboot
+! UINT8
+! s
+! 1
+! 0-255
+! 1
+LL_SGREINIT_PREDTIME = 70
+
+
+! OPS_PAR_092 LL_PASSIVE2_CONVTIME
+! Time allocated for KF convergence in PASSIVE 2
+! UINT8
+! s
+! 1
+! 0-255
+! 1
+LL_PASSIVE2_CONVTIME = 30
+
+
+! OPS_PAR_093 LL_PASSIVE4_PREDTIMEOUT
+! Kalman filter maximum prediction duration time.
+! UINT8
+! s
+! 1
+! 0-255
+! 1
+LL_PASSIVE4_PREDTIMEOUT = 60
+
+
+! OPS_PAR_094 LL_CONTROLLER_TH
+! Convergence threshold when controller activated.
+! UINT16
+! s
+! 1
+! 0-65535
+! 1
+LL_CONTROLLER_TH = 1000
+
+
+! OPS_PAR_095 LL_KFCONVTIME_ACTIVE3
+! Allocate time for Kalman filter convergence in NLES ACTIVE3 sub-mode.
+! UINT8
+! s
+! 1
+! 0-255
+! 1
+LL_KFCONVTIME_ACTIVE3 = 40
+
+
+! OPS_PAR_096 LL_KFCONVTIME_ACTIVE7
+! Allocate time for Kalman filter convergence in NLES ACTIVE7 sub-mode.
+! UINT8
+! s
+! 1
+! 0-255
+! 1
+LL_KFCONVTIME_ACTIVE7 = 40
+
+
+! OPS_PAR_097 LL_SYMBOL_RATE_L1
+! Symbol rate for L1.
+! UINT8
+! N/A
+! 1
+! 0,1
+!
+LL_SYMBOL_RATE_L1 = 0
+
+
+! OPS_PAR_098 LL_SYMBOL_RATE_L5
+! Symbol rate for L5.
+! UINT8
+! N/A
+! 1
+! 0,1
+!
+LL_SYMBOL_RATE_L5 = 0
+
+
+! OPS_PAR_099 LL_MT9_VALIDITY_TH
+! MT9 validity threshold.
+! UINT16
+! s
+! 1
+! 
+! 1
+LL_MT9_VALIDITY_TH = 1500
+
+
+! OPS_PAR_100 LL_CN0_TH_L1
+! Threshold that defines degraded tracking event for L1.
+! INT8
+! dBHz
+! 1
+! 
+! N/A
+LL_CN0_TH_L1 = 45
+
+
+! OPS_PAR_101 LL_CN0_TH_L5
+! Threshold that defines degraded tracking event for L5.
+! INT8
+! dBHz
+! 1
+! 
+! N/A
+LL_CN0_TH_L5 = 45
+
+
+! OPS_PAR_102 DELAY_RESET_SG_TH
+! Threshold for delay to Reset Signal Generator.
+! UINT8
+! s
+! 1
+! 0-255
+! 1
+DELAY_RESET_SG_TH = 20
+
+
+! OPS_PAR_103 TIMER_RESET_TO_OP_TH
+! Threshold from Reset to Operational mode for Signal Generator.
+! UINT16
+! s
+! 1
+! 0-65535
+! 1
+TIMER_RESET_TO_OP_TH = 255
+
+
+! OPS_PAR_104 SQM_ADR_STD_TH_L1
+! Threshold set on ADR measurement on L1.
+! UINT16
+! m
+! 0.001
+! 
+! 
+SQM_ADR_STD_TH_L1 = 50
+
+
+! OPS_PAR_105 SQM_ADR_STD_TH_L2
+! Threshold set on ADR measurement on L2.
+! UINT16
+! m
+! 0.001
+! 
+! 
+SQM_ADR_STD_TH_L2 = 50
+
+
+! OPS_PAR_106 SQM_CN0_TH_L1
+! Threshold set on CN0 measurement on L1.
+! UINT16
+! dBHz
+! 0.1
+! 
+! N/A
+SQM_CN0_TH_L1 = 300
+
+
+! OPS_PAR_107 SQM_CN0_TH_L2
+! Threshold set on CN0 measurement on L2.
+! UINT16
+! dBHz
+! 0.1
+! 
+! N/A
+SQM_CN0_TH_L2 = 300
+
+
+! OPS_PAR_108 GS_ANTENNA_POSITION_TX_X
+! Position of the Ground Station Transmission directional antenna centre 
+! of phase. X in ECEF coordinates in the WGS84 system.
+! INT32
+! meters
+! 1E-2
+! -7E6..7E6
+! 0.5
+GS_ANTENNA_POSITION_TX_X = 409131439
+
+
+! OPS_PAR_109 GS_ANTENNA_POSITION_TX_Y
+! Position of the Ground Station Transmission directional antenna centre 
+! of phase. Y in ECEF coordinates in the WGS84 system.
+! INT32
+! meters
+! 1E-2
+! -7E6..7E6
+! 0.5
+GS_ANTENNA_POSITION_TX_Y = 36845603
+
+
+! OPS_PAR_110 GS_ANTENNA_POSITION_TX_Z
+! Position of the Ground Station Transmission directional antenna centre 
+! of phase. Z in ECEF coordinates in the WGS84 system.
+! INT32
+! meters
+! 1E-2
+! -7E6..7E6
+! 0.5
+GS_ANTENNA_POSITION_TX_Z = 486321656
+
+
+! OPS_PAR_111 GS_ANTENNA_POSITION_RX_X
+! Position of the Ground Station Reception directional antenna centre of phase.
+! X in ECEF coordinates in the WGS84 system.
+! INT32
+! meters
+! 1E-2
+! -7E6..7E6
+! 0.5
+GS_ANTENNA_POSITION_RX_X = 409131794
+
+
+! OPS_PAR_112 GS_ANTENNA_POSITION_RX_Y
+! Position of the Ground Station Reception directional antenna centre of phase.
+! Y in ECEF coordinates in the WGS84 system.
+! INT32
+! meters
+! 1E-2
+! -7E6..7E6
+! 0.5
+GS_ANTENNA_POSITION_RX_Y = 36845731
+
+
+! OPS_PAR_113 GS_ANTENNA_POSITION_RX_Z
+! Position of the Ground Station Reception directional antenna centre of phase.
+! Z in ECEF coordinates in the WGS84 system.
+! INT32
+! meters
+! 1E-2
+! -7E6..7E6
+! 0.5
+GS_ANTENNA_POSITION_RX_Z = 486321221
+
+
+! OPS_PAR_114 GEO_POSITION_X
+! Mean position of GEO at mass centre, X coordinate of ECEF coord. system.
+! INT32
+! meters
+! 0.5
+! 
+! 5
+GEO_POSITION_X = 8182635
+
+! OPS_PAR_115 GEO_POSITION_Y
+! Mean position of GEO at mass centre, Y coordinate of ECEF coord. system.
+! INT32
+! meters
+! 0.5
+! 
+! 5
+GEO_POSITION_Y = 736914
+
+
+! OPS_PAR_116 GEO_POSITION_Z
+! Mean position of GEO at mass centre, Z coordinate of ECEF coord. system.
+! INT32
+! meters
+! 0.5
+! 
+! 5
+GEO_POSITION_Z = 9726424
+
+
+
+! OPS_PAR_117 GEO_DELTA_TX_X
+! Position of satellite transmission antenna relative to satellite mass centre. 
+! X coordinate of ECEF coord. System.
+! INT16
+! meters
+! 0.01
+! 
+! 
+GEO_DELTA_TX_X = 1000
+
+
+! OPS_PAR_118 GEO_DELTA_TX_Y
+! Position of satellite transmission antenna relative to satellite mass centre. 
+! Y coordinate of ECEF coord. System.
+! INT16
+! meters
+! 0.01
+! 
+! 
+GEO_DELTA_TX_Y = 1000
+
+
+! OPS_PAR_119 GEO_DELTA_TX_Z
+! Position of satellite transmission antenna relative to satellite mass centre. 
+! Z coordinate of ECEF coord. System.
+! INT16
+! meters
+! 0.01
+! 
+! 
+GEO_DELTA_TX_Z = 1000
+
+
+! OPS_PAR_120 GEO_DELTA_RX_X
+! Position of satellite reception antenna relative to satellite mass centre. 
+! X coordinate of ECEF coord. System.
+! INT16
+! meters
+! 0.01
+! 
+!
+GEO_DELTA_RX_X = 1000
+
+
+! OPS_PAR_121 GEO_DELTA_RX_Y
+! Position of satellite reception antenna relative to satellite mass centre. 
+! Y coordinate of ECEF coord. System.
+! INT16
+! meters
+! 0.01
+! 
+!
+GEO_DELTA_RX_Y = -1000
+
+
+! OPS_PAR_122 GEO_DELTA_RX_Z
+! Position of satellite reception antenna relative to satellite mass centre. 
+! Z coordinate of ECEF coord. System.
+! INT16
+! meters
+! 0.01
+! 
+!
+GEO_DELTA_RX_Z = 1000
+
+
+! OPS_PAR_123 LL_SO_STD_Q
+! Parameter for steering offset filtering function: 
+! standard deviation of covariance matrix
+! UINT32
+! m/s
+! 0.000000001
+! 1..UNINT32_MAX
+! N/A
+LL_SO_STD_Q = 2
+
+
+! OPS_PAR_124 LL_SO_STD_R
+! Parameter for steering offset filtering function: 
+! standard deviation of the measurement matrix
+! UINT32
+! m
+! 0.01
+! 1..UNINT32_MAX
+! N/A
+LL_SO_STD_R = 90
+
+
+! OPS_PAR_125 CE_GEO_DELTA_RANGE_TH
+! Threshold for GEO Delta Range.
+! UINT32
+! m
+! 1
+! 
+!
+CE_GEO_DELTA_RANGE_TH = 50000
+
+
+! OPS_PAR_126 LL_CTRL_GAIN1
+! Controller gain applied on integral of error.
+! INT64
+! N/A
+! 1E-8
+! 0..INT64_MAX
+!
+LL_CTRL_GAIN1 = 3000
+
+
+! OPS_PAR_127 LL_CTRL_GAIN2
+! Controller gain applied on error.
+! INT64
+! N/A
+! 1E-8
+! 0..INT64_MAX
+!
+LL_CTRL_GAIN2 = 190000
+
+
+! OPS_PAR_128 LL_CTRL_GAIN3
+! Controller gain applied on error derivative.
+! INT64
+! N/A
+! 1E-8
+! 0..INT64_MAX
+!
+LL_CTRL_GAIN3 = 6230000
+
+
+! OPS_PAR_129 CE_SM_HOLD_TIMER_TH
+! State Machine: hold state timer threshold.
+! UINT16
+! s
+! 1
+! 0-65535
+!
+CE_SM_HOLD_TIMER_TH = 60
+
+
+! OPS_PAR_130 CE_SM_PASSIVE1_TIMER_TH
+! State Machine: passive/1 state timer threshold.
+! UINT16
+! s
+! 1
+! 0-65535
+!
+CE_SM_PASSIVE1_TIMER_TH = 60
+
+
+! OPS_PAR_131 CE_SM_ACTIVE_TIMER1TO9_TH
+! State Machine: active state timer threshold to reach 9th sub state from 1st.
+! UINT16
+! s
+! 1
+! 0-65535
+!
+CE_SM_ACTIVE_TIMER1TO9_TH = 1500
+
+
+! OPS_PAR_029 CE_SM_ACTIVE_TIMER5TO9_TH
+! State Machine: active mode timer threshold to reach 9th sub mode from 5th
+! UINT16
+! s
+! 1
+! 0-65535
+!
+CE_SM_ACTIVE_TIMER5TO9_TH = 1500
+
+
+! OPS_PAR_132 CE_SM_ACTIVE_TIMER8TO9_TH
+! State Machine: active state timer threshold to reach 9th sub state from 8th.
+! UINT16
+! s
+! 1
+! 0-65535
+!
+CE_SM_ACTIVE_TIMER8TO9_TH = 1050
+
+! OPS_PAR_243 CE_SM_SWITCH_TH
+! State Machine: switch timer threshold
+! UINT8
+! s
+! 1
+! 0-255
+!
+CE_SM_SWITCH_TH = 11
+
+! OPS_PAR_133 CE_CN0_GEOL1_WARNING_TH
+! Threshold on C/N0 for L1 GEO channel.
+! INT8
+! dBHz
+! 1
+! 0..127
+!
+CE_CN0_GEOL1_WARNING_TH = 30
+
+
+! OPS_PAR_134 CE_CN0_GEOL5_WARNING_TH
+! Threshold on C/N0 for L5 GEO channel.
+! INT8
+! dBHz
+! 1
+! 0..127
+!
+CE_CN0_GEOL5_WARNING_TH = 30
+
+
+! OPS_PAR_135 CE_CN0_GEOL1_TH
+! Threshold on C/N0 for L1 GEO channel.
+! INT8
+! dBHz
+! 1
+! 0..127
+!
+CE_CN0_GEOL1_TH = 30
+
+
+! OPS_PAR_136 CE_CN0_GEOL5_TH
+! Threshold on C/N0 for L5 GEO channel.
+! INT8
+! dBHz
+! 1
+! 0..127
+!
+CE_CN0_GEOL5_TH = 30
+
+
+! OPS_PAR_137 CE_CN0_CALPL1_S2TH
+! Threshold on Section 2 CALP_L1 channel C/N0.
+! INT8
+! dBHz
+! 1
+! 0..127
+!
+CE_CN0_CALPL1_S2TH = 30
+
+
+! OPS_PAR_138 CE_CN0_CALML1_S2TH
+! Threshold on Section 2 CALM_L1 channel C/N0.
+! INT8
+! dBHz
+! 1
+! 0..127
+!
+CE_CN0_CALML1_S2TH = 30
+
+
+! OPS_PAR_139 CE_CN0_CALPL5_S2TH
+! Threshold on Section 2 CALP_L5 channel C/N0.
+! INT8
+! dBHz
+! 1
+! 0..127
+!
+CE_CN0_CALPL5_S2TH = 30
+
+
+! OPS_PAR_140 CE_CN0_CALML5_S2TH
+! Threshold on Section 2 CALM_L5 channel C/N0.
+! INT8
+! dBHz
+! 1
+! 0..127
+!
+CE_CN0_CALML5_S2TH = 30
+
+
+! OPS_PAR_141 CE_CN0_CALPL1_S3TH
+! Threshold on Section 3 CALP_L1 channel C/N0.
+! INT8
+! dBHz
+! 1
+! 0..127
+!
+CE_CN0_CALPL1_S3TH = 30
+
+
+! OPS_PAR_142 CE_CN0_CALML1_S3TH
+! Threshold on Section 3 CALM_L1 channel C/N0.
+! INT8
+! dBHz
+! 1
+! 0..127
+!
+CE_CN0_CALML1_S3TH = 30
+
+
+! OPS_PAR_143 CE_CN0_CALPL5_S3TH
+! Threshold on Section 3 CALP_L5 channel C/N0.
+! INT8
+! dBHz
+! 1
+! 0..127
+!
+CE_CN0_CALPL5_S3TH = 30
+
+
+! OPS_PAR_144 CE_CN0_CALML5_S3TH
+! Threshold on Section 3 CALM_L5 channel C/N0.
+! INT8
+! dBHz
+! 1
+! 0..127
+!
+CE_CN0_CALML5_S3TH = 30
+
+
+! OPS_PAR_145 CE_CALL1_ACQDURATION
+! Threshold on L1 Calibration channels acquisition duration.
+! UINT8
+! s
+! 1
+! 0-255
+!
+CE_CALL1_ACQDURATION = 160
+
+
+! OPS_PAR_146 CE_CALL5_ACQDURATION
+! Threshold on L5 Calibration channels acquisition duration.
+! UINT8
+! s
+! 1
+! 0-255
+!
+CE_CALL5_ACQDURATION = 160
+
+
+! OPS_PAR_147 CE_GEOL1_ACQDURATION
+! Threshold on L1 GEO channels acquisition duration.
+! UINT8
+! s
+! 1
+! 0-255
+!
+CE_GEOL1_ACQDURATION = 255
+
+
+! OPS_PAR_148 CE_GEOL5_ACQDURATION
+! Threshold on L5 GEO channels acquisition duration.
+! UINT8
+! s
+! 1
+! 0-255
+!
+CE_GEOL5_ACQDURATION = 255
+
+
+! OPS_PAR_149 CE_WARNING_CODE_ERROR_L1_TH
+! Threshold on L1 code error.
+! UINT16
+! m
+! 1
+! 
+!
+CE_WARNING_CODE_ERROR_L1_TH = 275
+
+
+! OPS_PAR_150 CE_WARNING_CODE_ERROR_L5_TH
+! Threshold on L5 code error.
+! UINT16
+! m
+! 1
+! 
+!
+CE_WARNING_CODE_ERROR_L5_TH = 275
+
+
+! OPS_PAR_151 CE_WARNING_CARRIER_ERROR_L1_TH
+! Threshold on L1 carrier error.
+! UINT16
+! m
+! 0.01
+! 
+!
+CE_WARNING_CARRIER_ERROR_L1_TH = 65530
+
+
+! OPS_PAR_152 CE_WARNING_CARRIER_ERROR_L5_TH
+! Threshold on L5 carrier error.
+! UINT16
+! m
+! 0.01
+! 
+!
+CE_WARNING_CARRIER_ERROR_L5_TH = 65530
+
+
+! OPS_PAR_153 CE_MAX_CODE_ERROR_L1_TH
+! Threshold on L1 max code error.
+! UINT32
+! m
+! 0.01
+! 
+!
+CE_MAX_CODE_ERROR_L1_TH = 100000
+
+
+! OPS_PAR_154 CE_MAX_CODE_ERROR_L5_TH
+! Threshold on L5 max code error.
+! UINT32
+! m
+! 0.01
+! 
+!
+CE_MAX_CODE_ERROR_L5_TH = 100000
+
+
+! OPS_PAR_155 CE_MAX_CARRIER_ERROR_L1_TH
+! Threshold on L1 max carrier error.
+! UINT16
+! m
+! 0.01
+! 
+!
+CE_MAX_CARRIER_ERROR_L1_TH = 65530
+
+
+! OPS_PAR_156 CE_MAX_CARRIER_ERROR_L5_TH
+! Threshold on L5 max carrier error.
+! UINT16
+! m
+! 0.01
+! 
+!
+CE_MAX_CARRIER_ERROR_L5_TH = 65530
+
+
+! OPS_PAR_157 CE_MAX_GEO_CLOCK_DRIFT_L1
+! Threshold on L1 GEO clock drift (for L1 phase rate).
+! UINT32
+! m/s
+! 1E-1
+! 
+!
+CE_MAX_GEO_CLOCK_DRIFT_L1 = 100
+
+
+! OPS_PAR_158 CE_MAX_GEO_CLOCK_DRIFT_L5
+! Threshold on L5 GEO clock drift (for L5 phase rate).
+! UINT32
+! m/s
+! 1E-1
+! 
+!
+CE_MAX_GEO_CLOCK_DRIFT_L5 = 100
+
+! OPS_PAR_159 CE_MAX_L1L5_BIAS
+! Threshold for L1L5 bias.
+! UINT32
+! meter
+! 1
+! 
+!
+CE_MAX_L1L5_BIAS = 1000
+
+
+! OPS_PAR_160 RX_ASSIGN_WINDOW
+! Error or uncertainly in the L1 Doppler estimate given in the doppler field 
+! of the ASSIGN command.
+! UINT32
+! Hz
+! 1
+! 0 to 10000
+! 1
+RX_ASSIGN_WINDOW = 500
+
+
+! OPS_PAR_161 RX_THRESHOLD_CAL_ACQUI
+! Acquisition power threshold in dBHz for CAL C/A signals.
+! UINT32
+! dBHz
+! 1
+! 25..80
+! N/A
+RX_THRESHOLD_CAL_ACQUI = 45
+
+
+! OPS_PAR_162 RX_THRESHOLD_CAL_LOCK
+! Steady-state tracking lock threshold in dBHz for CAL C/A signals.
+! UINT32
+! dBHz
+! 1
+! 10..80
+! N/A
+RX_THRESHOLD_CAL_LOCK = 30
+
+
+! OPS_PAR_163 RX_THRESHOLD_CAL_CROSSCORR
+! It specifies the cross-correlation power threshold in dBHz, at which point, 
+! the checks are performed, for CAL C/A signals.
+! UINT32
+! dBHz
+! 1
+! 10..80
+! N/A
+RX_THRESHOLD_CAL_CROSSCORR = 45
+
+
+! OPS_PAR_164 RX_THRESHOLD_GEO_ACQUI
+! Acquisition power threshold in dBHz for GEO C/A signals.
+! UINT32
+! dBHz
+! 1
+! 25..80
+! N/A
+RX_THRESHOLD_GEO_ACQUI = 45
+
+
+! OPS_PAR_165 RX_THRESHOLD_GEO_LOCK
+! Steady-state tracking lock threshold in dBHz for GEO C/A signals.
+! UINT32
+! dBHz
+! 1
+! 10..80
+! N/A
+RX_THRESHOLD_GEO_LOCK = 30
+
+
+! OPS_PAR_166 RX_THRESHOLD_GEO_CROSSCORR
+! It specifies the cross-correlation power threshold in dBHz, at which point, 
+! the checks are performed, for GEO C/A signals.
+! UINT32
+! dBHz
+! 1
+! 10..80
+! N/A
+RX_THRESHOLD_GEO_CROSSCORR = 45
+
+
+! OPS_PAR_167 CR_ECUTOFF_ANGLE
+! Elevation cut-off angle relative to horizon in degrees (for GPS satellites)
+! INT16 
+! degrees 
+! 0.1 
+! -90.0.+90.0,
+! nominal 5
+! 0.1
+CR_ECUTOFF_ANGLE = 50
+
+
+! OPS_PAR_168 CR_L1_DLLBW
+! Noise equivalent bandwidth of DLL filter in Hz for GPS + GEO C/A signals
+! UINT16 
+! Hz 
+! 0.001
+! 0.001 to 0.5
+! N/A
+CR_L1_DLLBW = 500
+
+
+! OPS_PAR_169 CR_L2_DLLBW
+! Noise equivalent bandwidth of DLL filter in Hz for GPS P(Y) signals
+! UINT16 
+! Hz 
+! 0.001
+! 0.001 to 0.5
+! N/A
+CR_L2_DLLBW = 500
+
+
+! OPS_PAR_170 CR_L1_PLLBW 
+! Noise equivalent bandwidth of PLL filter in Hz for GPS + GEO C/A signals
+! UINT16 
+! Hz 
+! 0.1
+! 0.5 to 15
+! N/A
+CR_L1_PLLBW = 150
+
+
+! OPS_PAR_171 CR_L2_PLLBW
+! Noise equivalent bandwidth of PLL filter in Hz for GPS P(Y) signals
+! UINT16 
+! Hz 
+! 0.01
+! 0.01 to 1.0
+! N/A
+CR_L2_PLLBW = 10
+
+
+! OPS_PAR_172 CR_FIX_LAT
+! Latitude of the Receiver antenna in degrees
+! See WGS84 latitude data type description
+! INT64 
+! ° 
+! 1E-08
+! -90° to +90°
+! 4.5E-6
+CR_FIX_LAT = 0
+
+
+! OPS_PAR_173 CR_FIX_LONG
+! Longitude of the Receiver antenna in degrees
+! See WGS84 latitude data type description
+! INT64 
+! °
+! 1E-08
+! -180° to +180°
+! 4.5E-6
+CR_FIX_LONG = 0
+
+
+! OPS_PAR_174 CR_FIX_HEIGHT
+! Ellipsoidal height of the Receiver antenna in degrees
+! See WGS84 latitude data type description
+! INT32 
+! m 
+! 0.001
+! -300m to 5000m
+! 0.5m
+CR_FIX_HEIGHT = 0
+
+
+! OPS_PAR_175 CR_ASSIGN_L1_CALP_CHANNEL
+! Channel for GEO PRN on Calibration path L1_CALp 
+! UINT32
+! N/A
+! 1
+! 14..21
+! N/A
+CR_ASSIGN_L1_CALP_CHANNEL = 14
+
+
+! OPS_PAR_176 CR_ASSIGN_L1_CALP_DOPPLER
+! Current L1 Doppler offset for GEO PRN on Calibration path L1_CALp
+! INT32
+! Hz
+! 1
+! -100000 to 100000
+! 1
+CR_ASSIGN_L1_CALP_DOPPLER = 0
+
+
+! OPS_PAR_177 CR_CARRIERFREQOFFSET_L1_CALP
+! Specifies the change in the nominal carrier frequency for GEO PRN on 
+! Calibration path L1_CALp channel
+! INT32
+! Hz
+! 1
+! -100000 to 100000
+! 1
+CR_CARRIERFREQOFFSET_L1_CALP = 9500
+
+
+! OPS_PAR_178 CR_ASSIGN_L1_GEO_CHANNEL
+! Channel for GEO PRN on L1 GEO SIS
+! UINT32
+! N/A
+! 1
+! 14..21
+! N/A
+CR_ASSIGN_L1_GEO_CHANNEL = 15
+
+
+! OPS_PAR_179 CR_ASSIGN_L1_GEO_DOPPLER
+! Current L1 Doppler offset for GEO PRN on L1 GEO SIS
+! INT32
+! Hz
+! 1
+! -100000 to 100000
+! 1
+CR_ASSIGN_L1_GEO_DOPPLER = 0
+
+
+! OPS_PAR_180 LLRX2_L1_DLLBW
+! Noise equivalent bandwidth of DLL filter in Hz for GPS + GEO C/A signals
+! UINT16
+! Hz
+! 0.001
+! 0.001 to 0.5
+! N/A
+LLRX2_L1_DLLBW = 500
+
+
+! OPS_PAR_181 LLRX2_L5_DLLBW
+! Noise equivalent bandwidth of DLL filter in Hz for GEO C5 signals
+! UINT16
+! Hz
+! 0.001
+! 0.001 to 0.5
+! N/A
+LLRX2_L5_DLLBW = 500
+
+
+! OPS_PAR_182 LLRX2_L1_PLLBW
+! Noise equivalent bandwidth of PLL filter in Hz for GPS + GEO C/A signals
+! UINT16
+! Hz
+! 0.1
+! 0.5 to 15
+! N/A
+LLRX2_L1_PLLBW = 30
+
+
+! OPS_PAR_183 LLRX2_L5_PLLBW
+! Noise equivalent bandwidth of PLL filter in Hz for GEO C5 signals
+! UINT16
+! Hz
+! 0.1
+! 0.5 to 15
+! N/A
+LLRX2_L5_PLLBW = 30
+
+
+! OPS_PAR_184 LLRX2_ASSIGN_L1_CALM_CHANNEL
+! Channel for GEO PRN on Calibration path L1_CALm
+! UINT32
+! N/A
+! 1
+! 0..9
+! N/A
+LLRX2_ASSIGN_L1_CALM_CHANNEL = 0
+
+
+! OPS_PAR_185 LLRX2_ASSIGN_L1_CALM_DOPPLER
+! Current L1 Doppler offset GEO PRN on Calibration path L1_CALm
+! INT32
+! Hz
+! 1
+! -100000 to 100000
+! 1
+LLRX2_ASSIGN_L1_CALM_DOPPLER = 0
+
+
+! OPS_PAR_186 LLRX2_CARRIERFREQOFFSET_L1_CALM
+! Specifies the change in the nominal carrier frequency for GEO PRN on 
+! Calibration path L1_CALm channel
+! INT32
+! Hz
+! 1
+! -100000 to 100000
+! 1
+LLRX2_CARRIERFREQOFFSET_L1_CALM = -9500
+
+
+! OPS_PAR_187 LLRX2_ASSIGN_L1_CALP_CHANNEL
+! Channel for GEO PRN on Calibration path L1_CALp
+! UINT32
+! N/A
+! 1
+! 0..9
+! N/A
+LLRX2_ASSIGN_L1_CALP_CHANNEL = 1
+
+
+! OPS_PAR_188 LLRX2_ASSIGN_L1_CALP_DOPPLER
+! Current L1 Doppler offset for GEO PRN on Calibration path L1_CALp
+! INT32
+! Hz
+! 1
+! -100000 to 100000
+! 1
+LLRX2_ASSIGN_L1_CALP_DOPPLER = 0
+
+
+! OPS_PAR_189 LLRX2_CARRIERFREQOFFSET_L1_CALP
+! Specifies the change in the nominal carrier frequency for GEO PRN on 
+! Calibration path L1_CALp channel
+! INT32
+! Hz
+! 1
+! -100000 to 100000
+! 1
+LLRX2_CARRIERFREQOFFSET_L1_CALP = 9500
+
+
+! OPS_PAR_190 LLRX2_ASSIGN_L5_CALM_CHANNEL
+! Channel for tracked GEO signal (signal Calibration path L5)
+! UINT32
+! N/A
+! 1
+! 0..9
+! N/A
+LLRX2_ASSIGN_L5_CALM_CHANNEL = 6
+
+
+! OPS_PAR_191 LLRX2_ASSIGN_L5_CALM_DOPPLER
+! Current L5 Doppler offset for tracked GEO signal
+! INT32
+! Hz
+! 1
+! -100000 to 100000
+! 1
+LLRX2_ASSIGN_L5_CALM_DOPPLER = 0
+
+
+! OPS_PAR_192 LLRX2_CARRIERFREQOFFSET_L5_CALM
+! Specifies the change in the nominal carrier frequency for a channel.
+! INT32
+! Hz
+! 1
+! -100000 to 100000
+! 1
+LLRX2_CARRIERFREQOFFSET_L5_CALM = -9500
+
+
+! OPS_PAR_193 LLRX2_ASSIGN_L5_CALP_CHANNEL
+! Channel for tracked GEO signal (signal Calibration path L5)
+! UINT32
+! N/A
+! 1
+! 0..9
+! N/A
+LLRX2_ASSIGN_L5_CALP_CHANNEL = 7
+
+
+! OPS_PAR_194 LLRX2_ASSIGN_L5_CALP_DOPPLER
+! Current L5 Doppler offset for tracked GEO signal
+! INT32
+! Hz
+! 1
+! -100000 to 100000
+! 1
+LLRX2_ASSIGN_L5_CALP_DOPPLER = 0
+
+
+! OPS_PAR_195 LLRX2_CARRIERFREQOFFSET_L5_CALP
+! Specifies the change in the nominal carrier frequency for a channel.
+! INT32
+! Hz
+! 1
+! -100000 to 100000
+! 1
+LLRX2_CARRIERFREQOFFSET_L5_CALP = 9500
+
+
+! OPS_PAR_196 LLRX3_L1_DLLBW
+! Noise equivalent bandwidth of DLL filter in Hz for GPS + GEO C/A signals
+! UINT16
+! Hz
+! 0.001
+! 0.001 to 0.5
+! N/A
+LLRX3_L1_DLLBW = 500
+
+
+! OPS_PAR_197 LLRX3_L5_DLLBW
+! Noise equivalent bandwidth of DLL filter in Hz for GEO C5 signals
+! UINT16
+! Hz
+! 0.001
+! 0.001 to 0.5
+! N/A
+LLRX3_L5_DLLBW = 500
+
+
+! OPS_PAR_198 LLRX3_L1_PLLBW
+! Noise equivalent bandwidth of PLL filter in Hz for GPS + GEO C/A signals
+! UINT16
+! Hz
+! 0.1
+! 0.5 to 15
+! N/A
+LLRX3_L1_PLLBW = 30
+
+
+! OPS_PAR_199 LLRX3_L5_PLLBW
+! Noise equivalent bandwidth of PLL filter in Hz for GEO C5 signals
+! UINT16
+! Hz
+! 0.1
+! 0.5 to 15
+! N/A
+LLRX3_L5_PLLBW = 30
+
+
+! OPS_PAR_200 LLRX3_ASSIGN_L1_CALM_CHANNEL
+! Channel for tracked GEO signal (signal Calibration path L1)
+! UINT32
+! N/A
+! 1
+! 0..9
+! N/A
+LLRX3_ASSIGN_L1_CALM_CHANNEL = 0
+
+
+! OPS_PAR_201 LLRX3_ASSIGN_L1_CALM_DOPPLER
+! Current L1 Doppler offset for tracked GEO signal
+! INT32
+! Hz
+! 1
+! -100000 to 100000
+! 1
+LLRX3_ASSIGN_L1_CALM_DOPPLER = 0
+
+
+! OPS_PAR_202 LLRX3_CARRIERFREQOFFSET_L1_CALM
+! Specifies the change in the nominal carrier frequency for a channel.
+! INT32
+! Hz
+! 1
+! -100000 to 100000
+! 1
+LLRX3_CARRIERFREQOFFSET_L1_CALM = -9500
+
+
+! OPS_PAR_203 LLRX3_ASSIGN_L1_CALP_CHANNEL
+! Channel for tracked GEO signal (signal Calibration path L1)
+! UINT32
+! N/A
+! 1
+! 0..9
+! N/A
+LLRX3_ASSIGN_L1_CALP_CHANNEL = 1
+
+
+! OPS_PAR_204 LLRX3_ASSIGN_L1_CALP_DOPPLER
+! Current L1 Doppler offset for tracked GEO signal
+! INT32
+! Hz
+! 1
+! -100000 to 100000
+! 1
+LLRX3_ASSIGN_L1_CALP_DOPPLER = 0
+
+
+! OPS_PAR_205 LLRX3_CARRIERFREQOFFSET_L1_CALP
+! Specifies the change in the nominal carrier frequency for a channel.
+! INT32
+! Hz
+! 1
+! -100000 to 100000
+! 1
+LLRX3_CARRIERFREQOFFSET_L1_CALP = 9500
+
+
+! OPS_PAR_206 LLRX3_ASSIGN_L1_GEO_CHANNEL
+! Channel for tracked GEO signal (signal L1 GEO SIS)
+! UINT32
+! N/A
+! 1
+! 0..9
+! N/A
+LLRX3_ASSIGN_L1_GEO_CHANNEL = 4
+
+
+! OPS_PAR_207 LLRX3_ASSIGN_L1_GEO_DOPPLER
+! Current L1 Doppler offset for tracked GEO signal.
+! INT32
+! Hz
+! 1
+! -100000 to 100000
+! 1
+LLRX3_ASSIGN_L1_GEO_DOPPLER = 0
+
+
+! OPS_PAR_208 LLRX3_ASSIGN_L1_GEO_IB_CHANNEL
+! Channel for tracked GEO signal (signal L1 GEO SIS)
+! UINT32
+! N/A
+! 1
+! 0..9
+! N/A
+LLRX3_ASSIGN_L1_GEO_IB_CHANNEL = 5
+
+
+! OPS_PAR_209 LLRX3_ASSIGN_L1_GEO_IB_DOPPLER
+! Current L1 Doppler offset for tracked GEO signal.
+! INT32
+! Hz
+! 1
+! -100000 to 100000
+! 1
+LLRX3_ASSIGN_L1_GEO_IB_DOPPLER = 0
+
+
+! OPS_PAR_210 LLRX3_ASSIGN_L5_CALM_CHANNEL
+! Channel for tracked GEO signal (signal Calibration path L5)
+! UINT32
+! N/A
+! 1
+! 0..9
+! N/A
+LLRX3_ASSIGN_L5_CALM_CHANNEL = 6
+
+
+! OPS_PAR_211 LLRX3_ASSIGN_L5_CALM_DOPPLER
+! Current L5 Doppler offset for tracked GEO signal.
+! INT32
+! Hz
+! 1
+! -100000 to 100000
+! 1
+LLRX3_ASSIGN_L5_CALM_DOPPLER = 0
+
+
+! OPS_PAR_212 LLRX3_CARRIERFREQOFFSET_L5_CALM
+! Specifies the change in the nominal carrier frequency for a channel.
+! INT32
+! Hz
+! 1
+! -100000 to 100000
+! 1
+LLRX3_CARRIERFREQOFFSET_L5_CALM = -9500
+
+
+! OPS_PAR_213 LLRX3_ASSIGN_L5_CALP_CHANNEL
+! Channel for tracked GEO signal (signal Calibration path L5)
+! UINT32
+! N/A
+! 1
+! 0..9
+! N/A
+LLRX3_ASSIGN_L5_CALP_CHANNEL = 7
+
+
+! OPS_PAR_214 LLRX3_ASSIGN_L5_CALP_DOPPLER
+! Current L5 Doppler offset for tracked GEO signal.
+! INT32
+! Hz
+! 1
+! -100000 to 100000
+! 1
+LLRX3_ASSIGN_L5_CALP_DOPPLER = 0
+
+
+! OPS_PAR_215 LLRX3_CARRIERFREQOFFSET_L5_CALP
+! Specifies the change in the nominal carrier frequency for a channel.
+! INT32
+! Hz
+! 1
+! -100000 to 100000
+! 1
+LLRX3_CARRIERFREQOFFSET_L5_CALP = 9500
+
+
+! OPS_PAR_216 LLRX3_ASSIGN_L5_GEO_CHANNEL
+! Channel for tracked GEO Signal (signal L5 GEO SIS)
+! UINT32
+! N/A
+! 1
+! 0..9
+! N/A
+LLRX3_ASSIGN_L5_GEO_CHANNEL = 8
+
+
+! OPS_PAR_217 LLRX3_ASSIGN_L5_GEO_DOPPLER
+! Current L5 Doppler offset for tracked GEO signal.
+! INT32
+! Hz
+! 1
+! -100000 to 100000
+! 1
+LLRX3_ASSIGN_L5_GEO_DOPPLER = 0
+
+
+! OPS_PAR_218 LLRX3_ASSIGN_L5_GEO_IB_CHANNEL
+! Channel for tracked GEO signal (signal L5 GEO SIS)
+! UINT32
+! N/A
+! 1
+! 0..9
+! N/A
+LLRX3_ASSIGN_L5_GEO_IB_CHANNEL = 9
+
+
+! OPS_PAR_219 LLRX3_ASSIGN_L5_GEO_IB_DOPPLER
+! Current L5 Doppler offset for tracked GEO signal.
+! INT32
+! Hz
+! 1
+! -100000 to 100000
+! 1
+LLRX3_ASSIGN_L5_GEO_IB_DOPPLER = 0
+
+
+! OPS_PAR_220 LLSG_L1_I_CODER_INIT_G2
+! G2(I) channel coder initialization value at zero chip count.
+! INT16
+! N/A
+! 1
+! 
+! N/A
+LLSG_L1_I_CODER_INIT_G2 = 336
+
+
+! OPS_PAR_221 LLSG_L1_Q_CODER_INIT_G2
+! G2(Q) channel coder initialization value at zero chip Count. 
+! Set to zero if not used.
+! INT16
+! N/A
+! 1
+! 
+! N/A
+LLSG_L1_Q_CODER_INIT_G2 = 0
+
+
+! OPS_PAR_222 LLSG_L5_I_CODER_INIT_XB_I
+! XB(I) I channel coder initialization value at zero chip count.
+! INT16
+! N/A
+! 1
+! 
+! N/A
+LLSG_L5_I_CODER_INIT_XB_I = 2111
+
+
+! OPS_PAR_223 LLSG_L5_Q_CODER_INIT_XB_Q
+! XB(Q) Q channel coder initialization value at zero chip count. 
+! INT16
+! N/A
+! 1
+! 
+! N/A
+LLSG_L5_Q_CODER_INIT_XB_Q = 2829
+
+
+! OPS_PAR_224 RFA_IF_L1_OUTPUT_FREQUENCY
+! Set Output Frequency for Up-converter IF/L1. 
+! UINT32
+! Hz
+! 1
+! 1150000000..1600000000
+! 10
+RFA_IF_L1_OUTPUT_FREQUENCY = 1575429500
+
+
+! OPS_PAR_225 RFA_IF_L1_GAIN
+! Gain for Up-converter IF/L1. 
+! UINT16
+! dB
+! 0.1
+! 0.0 to 25.0
+! 0.1
+RFA_IF_L1_GAIN = 160
+
+
+! OPS_PAR_226 RFA_IF_L5_OUTPUT_FREQUENCY
+! Set Output Frequency for Up- converter IF/C5. 
+! UINT32
+! Hz
+! 1
+! 1150000000..1600000000
+! 10
+RFA_IF_L5_OUTPUT_FREQUENCY = 1176459500
+
+
+! OPS_PAR_227 RFA_IF_L5_GAIN
+! Gain for Up-converter IF/L5. 
+! UINT16
+! dB
+! 0.1
+! 0.0 to 25.0
+! 0.1
+RFA_IF_L5_GAIN = 157
+
+
+! OPS_PAR_228 RFA_L1_C1_INPUT_FREQUENCY
+! Set Input Frequency for Up-converter L1/L1.
+! UINT32
+! Hz
+! 1
+! 1150000000..1600000000
+! 10
+RFA_L1_C1_INPUT_FREQUENCY = 1575429500
+
+
+! OPS_PAR_229 RFA_L1_C1_OUTPUT_FREQUENCY
+! Set Output Frequency for Up-converter L1/C1.
+! UINT64
+! Hz
+! 1
+! 5700000000..6600000000
+! 10
+RFA_L1_C1_OUTPUT_FREQUENCY = 5835420000
+
+
+! OPS_PAR_230 RFA_L1_C1_GAIN
+! Gain for Up-converter L1/C1. 
+! UINT16
+! dB
+! 0.1
+! 0.0 to 40.0
+! 0.1
+RFA_L1_C1_GAIN = 251
+
+
+! OPS_PAR_231 RFA_L5_C5_INPUT_FREQUENCY
+! Set Input Frequency for Up-converter L5/C5.
+! UINT32
+! Hz
+! 1
+! 1150000000..1600000000
+! 10
+RFA_L5_C5_INPUT_FREQUENCY = 1176459500
+
+
+! OPS_PAR_232 RFA_L5_C5_OUTPUT_FREQUENCY
+! Set Output Frequency for Up-converter L5/C5.
+! UINT64
+! Hz
+! 1
+! 5700000000..6600000000
+! 10
+RFA_L5_C5_OUTPUT_FREQUENCY = 5736450000
+
+
+! OPS_PAR_233 RFA_L5_C5_GAIN
+! Gain for Up-converter L5/C5. 
+! UINT16
+! dB
+! 0.1
+! 0.0 to 40.0
+! 0.1
+RFA_L5_C5_GAIN = 240
+
+
+! OPS_PAR_234 RFA_C1C2_L1L2_INPUT_FREQUENCY
+! Set Input Frequency for Down-converter C1~2/L1~2.
+! UINT64
+! Hz
+! 1
+! 5700000000..6600000000
+! 10
+RFA_C1C2_L1L2_INPUT_FREQUENCY = 5835420000
+
+
+! OPS_PAR_235 RFA_C1C2_L1L2_OUTPUT_FREQUENCY
+! Set Output Frequency for Down-converter C1~2/L1~2.
+! UINT32
+! Hz
+! 1
+! 1150000000..1600000000
+! 10
+RFA_C1C2_L1L2_OUTPUT_FREQUENCY = 1575410500
+
+
+! OPS_PAR_236 RFA_C1C2_L1L2_GAIN
+! Gain for Down-converter C1~2/L1~2. 
+! UINT16
+! dB
+! 0.1
+! 0.0 to 25.0
+! 0.1
+RFA_C1C2_L1L2_GAIN = 87
+
+
+! OPS_PAR_237 RFA_C5_L5_INPUT_FREQUENCY
+! Set Input Frequency for Down-converter C5/L5.
+! UINT64
+! Hz
+! 1
+! 5700000000..6600000000
+! 10
+RFA_C5_L5_INPUT_FREQUENCY = 5736450000
+
+
+! OPS_PAR_238 RFA_C5_L5_OUTPUT_FREQUENCY
+! Set Output Frequency for Down-converter C5/L5.
+! UINT32
+! Hz
+! 1
+! 1150000000..1600000000
+! 10
+RFA_C5_L5_OUTPUT_FREQUENCY = 1176440500
+
+
+! OPS_PAR_239 RFA_C5_L5_GAIN
+! Gain for Down-converter C5/L5. 
+! UINT16
+! dB
+! 0.1
+! 0.0 to 25.0
+! 0.1
+RFA_C5_L5_GAIN = 75

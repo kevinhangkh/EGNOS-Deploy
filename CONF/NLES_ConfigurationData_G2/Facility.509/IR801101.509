@@ -1,0 +1,129 @@
+Created by bin2egnos CAPGEMINI 2
+80 
+E2K222  -000-011-0001           
+20160401 11530 
+tempNlesG2File.cnf                                                                                                              
+cca1a771
+3683      
+
+! IR80 SWRU file for NLES G2 Betzdorf2 (BT2) / 509
+
+! OPS_PAR_200
+! NLES EGNOS Address
+NLES_EGNOS_ADDRESS = 509
+
+! OPS_PAR_201
+! CC IP address associated to the FEE interface
+NLES_CC_IP_ADDRESS_FEE = 199.234.195.001
+
+! OPS_PAR_202
+! CC IP address associated to the LME interface
+NLES_CC_IP_ADDRESS_LME = 199.234.203.001
+
+! OPS_PAR_203
+! IP address of the LME
+LME_IP_ADDRESS_FOR_LME = 199.234.203.128
+
+! OPS_PAR_204
+! IP address of the FEE
+FEE_IP_ADDRESS = 199.234.195.254
+
+! OPS_PAR_227 
+! IP address of test port (monitoring PC) 
+PC_IP_ADDRESS = 199.234.203.002
+
+! OPS_PAR_205
+! Frequency Standard (Clock) Configuration Tracking Information
+LRU_1_CONFIG = E2K01   -000-114330105006
+
+! OPS_PAR_206
+! 1-PPS distributor Configuration Tracking Information
+LRU_2_CONFIG = E2K02   -000-TSC4033A-40639
+
+! OPS_PAR_226
+! Core Receiver (Rx)  Configuration Tracking Information
+LRU_6_CONFIG = E2K31   -000-NXK11500002
+
+! OPS_PAR_207
+! Core Receiver Power Supply Unit (24 V)  Configuration Tracking Information
+LRU_7_CONFIG = E2K321  -000-CA53001540
+
+! OPS_PAR_208
+! Core Receiver Preamplifier  Configuration Tracking Information
+LRU_8_CONFIG = E2K624  -000-A11M-A45995
+
+! OPS_PAR_209
+! Core Receiver L1 Antenna  Configuration Tracking Information
+LRU_9_CONFIG = E2K61   -000-GGG-12090017
+
+! OPS_PAR_210
+! Core Receiver cables (covers Antenna Cable (ANT <-> Preamp)  Configuration Tracking Information
+LRU_10_CONFIG = E2K6    -000-Not present
+
+! OPS_PAR_211
+! Core Receiver Receiver Cable RCVR (Preamp <-> Rx)  Configuration Tracking Information
+LRU_11_CONFIG = E2K625  -000-LDF2-50-002
+
+! OPS_PAR_212
+! Core Receiver Calibration Cable (CAL_cable)  Configuration Tracking Information
+LRU_12_CONFIG = E2K6    -000-Not present
+
+! OPS_PAR_213
+! Long Loop Signal Generator Configuration Tracking Information
+LRU_19_CONFIG = E2K1    -000-NXT11500001
+
+! OPS_PAR_214
+! Integrity Box Configuration Tracking Information
+LRU_26_CONFIG = E2K51   -000-IB01
+
+! OPS_PAR_215
+! RF Adapter Upconverter 1 (IF to L1-band) (Conv.1) Configuration Tracking Information
+LRU_29_CONFIG = E2KA2   -000-AMT-C3301
+
+! OPS_PAR_215
+! RF Adapter Upconverter 2 (L1 to C1-band) (Conv.2) Configuration Tracking Information
+LRU_30_CONFIG = E2KA4   -000-AMT-C3310
+
+! OPS_PAR_215
+! RF Adapter Upconverter 3 (IF to L5-band) (Conv.3) Configuration Tracking Information
+LRU_31_CONFIG = E2KA3   -000-AMT-C3300
+
+! OPS_PAR_215
+! RF Adapter Upconverter 4 (L5 to C5-band) (Conv.4) Configuration Tracking Information
+LRU_32_CONFIG = E2KA5   -000-AMT-C3307
+
+! OPS_PAR_217
+! RF Adapter Downconverter 1 (C1-Return to L1-band) (Conv.5) Configuration Tracking Information
+LRU_33_CONFIG = E2KA6   -000-AMT-C3315
+
+! OPS_PAR_218
+! RF Adapter Downconverter 2 (C5-Return to L5-band) (Conv.6) Configuration Tracking Information
+LRU_34_CONFIG = E2KA7   -000-AMT-C3325
+
+! OPS_PAR_219
+! RF Switch Unit Configuration Tracking Information
+LRU_35_CONFIG = E2KA8   -000-GTS2272-17719
+
+! OPS_PAR_220
+! RFA Distribution Unit Configuration Tracking Information
+LRU_36_CONFIG = E2KA1   -000-E01/20011-001
+
+! OPS_PAR_221
+! Dehydrator Configuration Tracking Information
+LRU_41_CONFIG = E2K9    -000-Not present
+
+! OPS_PAR_222
+! Fan Unit Cabinet 1 Configuration Tracking Information
+LRU_42_CONFIG = E2K92   -000-Fan unit-P01
+
+! OPS_PAR_223
+! Fan Unit Cabinet 2 Configuration Tracking Information
+LRU_43_CONFIG = E2K9    -000-Not present
+
+! OPS_PAR_224
+! Core Computer Configuration Tracking Information
+LRU_51_CONFIG = E2K21   -000-CG-GCC-01-003
+
+! OPS_PAR_225
+! RF station Configuration Tracking Information
+LRU_60_CONFIG = E2K9    -000-Redu
