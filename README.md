@@ -14,4 +14,6 @@ This tool's main purpose is to install new files on EGNOS NLESG2 assets:
 - Install the files
 - Run with the new files
 
+Files to upload are given in UPLOAD/NLESG2/ directory.
+
 A GUI was also design in order to make the use of this tool easier.
